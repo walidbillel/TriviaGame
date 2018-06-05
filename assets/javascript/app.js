@@ -53,14 +53,12 @@ function decrementTime(){
   $("#start").hide();
   $("#next-question").show();
   
-  if (tps === 0) {
+  if (tps == 0) {
 
     clearInterval(intervalId);
-    $("#time").html("<h4>" + "Game Over" + "</h4>");
-    questionplace.hide();
-    options.hide();
-    $("#next-question").hide();
-    result.show();
+    $("#time").html("<h4>" + "Time Over, Next question" + "</h4>");
+    loadNextQuest();
+    
 
   } else {
     loadQuest();
@@ -71,21 +69,29 @@ function decrementTime(){
 // Now I want to bulid my quizs out of the questions array
 function loadQuest () {
 
-  for (var i =0; i < totQuest; i++) {
-    console.log(questions[i]);
+  var i =0; 
+  i < totQuest;
+  i++;
     questionplace.html(questions[i].question);
     opt1.html(questions[i].option1);
     opt2.html(questions[i].option2);
     opt3.html(questions[i].option3);
     opt4.html(questions[i].option4);
   
-  }
-  
 }
 
 function loadNextQuest () {
 
- 
+  var i =0; 
+  i < totQuest;
+  i++;
+  
+    console.log(questions[i]);
+    questionplace.html(questions[i].question);
+    opt1.html(questions[i].option1);
+    opt2.html(questions[i].option2);
+    opt3.html(questions[i].option3);
+    opt4.html(questions[i].option4);
 
 }
 

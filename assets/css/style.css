@@ -22,6 +22,7 @@ body {
   font-size: 22px;
   border-radius: 20px;
   margin: 10px 0 10px 0;
+  font-family: 'Kirang Haerang', cursive;
 
 }
 
@@ -32,6 +33,8 @@ body {
   vertical-align: middle;
   margin: 10px 0 10px 10px;
   border-radius: 20px;
+  font-family: 'Kirang Haerang', cursive;
+
 }
 
 .option:hover {
@@ -51,21 +54,21 @@ body {
 }
 
 
-
 .result {
   height: 100px;
   text-align: center;
   font-size: 75px;
   width: 700px;
   position: relative;
-  left: 600px;
-  bottom: 200px;
+  background-color: red;
+  padding: 20px;
+  font-family: 'Kirang Haerang', cursive;
 
 }
 
 #time {
   position: relative;
-  left: 440px;
+  left: 240px;
   font-family: 'Kirang Haerang', cursive;
   
   

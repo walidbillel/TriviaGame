@@ -25,16 +25,21 @@ var questions = [{
   answer: 3
 }];
 
-var wins = 0;
-var losses = 0;
+var score = 0;
 var tps = 30;
 var intervalId;
+var start = $("#start");
+var questionplace = $("#question");
+var options = $("#options");
+var opt1 = $("#opt1"); 
+var opt2 = $("#opt2"); 
+var opt3 = $("#opt3"); 
+var opt4 = $("#opt4"); 
+var result = $("#result");
+var totQuest = questions.length;
 
-
-
-
-// Just building the time here
-$("#start").on("click", runTime);
+// building the time here
+start.on("click", runTime);
 
 function runTime() {
   
@@ -44,21 +49,51 @@ function runTime() {
 function decrementTime(){
   
   tps--;
-  $("#time").html("<h5>" + "Time Remaining: " + tps + "</h5>");
+  $("#time").html("<h4>" + "Time Remaining: " + tps + "</h4>");
   $("#start").hide();
   $("#next-question").show();
   
-
   if (tps === 0) {
 
     clearInterval(intervalId);
-    $("#time").html("<h5>" + "Game Over" + "</h5>");
+    $("#time").html("<h4>" + "Game Over" + "</h4>");
+    questionplace.hide();
+    options.hide();
+    $("#next-question").hide();
+    result.show();
+
+  } else {
+    loadQuest();
   }
 }
 
 
-
 // Now I want to bulid my quizs out of the questions array
+function loadQuest () {
 
+  for (var i =0; i < totQuest; i++) {
+    console.log(questions[i]);
+    questionplace.html(questions[i].question);
+    opt1.html(questions[i].option1);
+    opt2.html(questions[i].option2);
+    opt3.html(questions[i].option3);
+    opt4.html(questions[i].option4);
+  
+  }
+  
+}
+
+function loadNextQuest () {
+
+ 
+
+}
+
+$("#next-question").on("click", loadNextQuest);
+
+
+
+
+// I want to loop over the questions and display one
 
  

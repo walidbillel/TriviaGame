@@ -13,8 +13,10 @@ body {
 .title {
   padding-top: 20px;
   text-align: center;
-  font-size: 40px;
-  font-family: 'Faster One', cursive;
+  font-size: 50px;
+  font-family: 'Kirang Haerang', cursive;
+  letter-spacing: 2px;
+  
 }
 
 .question {
@@ -68,8 +70,16 @@ body {
 
 #time {
   position: relative;
-  left: 240px;
+  left: 440px;
   font-family: 'Kirang Haerang', cursive;
   
+}
+
+.jumbotron {
   
+  position: relative;
+  left: 100px;
+  font-family: 'Kirang Haerang', cursive;
+  background-color: rgb(12, 124, 78);
+
 }

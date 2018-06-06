@@ -25,11 +25,24 @@ var questions = [{
   answer: 3
 }];
 
+// Creating my variables for the game
+// This variable will be used to load the question
 var i = 0;
-var score = 0;
+
+// This one will be the score
+var rightAns = 0;
+var wrongAns = 0;
+// Set my time to 30sec
 var tps = 30;
+
+// interval 
 var intervalId;
-var start = $("#start");
+
+// Getting the DOM elements
+var startBtn = $("#startBtn");
+var startFace = $("#start-facade")
+var nextQuest = $("#next-question");
+var time = $("#time");
 var questionplace = $("#question");
 var options = $("#options");
 var opt1 = $("#opt1"); 
@@ -37,33 +50,50 @@ var opt2 = $("#opt2");
 var opt3 = $("#opt3"); 
 var opt4 = $("#opt4"); 
 var result = $("#result");
+var correctAns = "";
+
+// Set this to ease the process
 var totQuest = questions.length;
+questionplace.hide();
+options.hide();
 
 // building the time here
-start.on("click", runTime);
+// When the start button is pressed I start my game
 
+
+// function to run the time and decrt. 
 function runTime() {
-  
+  tps = 30;
+  time.html("<h4>" + "Time Remaining: " + tps + "</h4>");
   intervalId = setInterval(decrementTime, 2000);
 }
 
+// This function will decrement the time 
 function decrementTime(){
   
+  // decreamenting the time
   tps--;
-  $("#time").html("<h4>" + "Time Remaining: " + tps + "</h4>");
-  $("#start").hide();
-  $("#next-question").show();
+  // generating the time 
+  time.html("<h4>" + "Time Remaining: " + tps + "</h4>");
+ 
   
   if (tps == 0) {
-
     clearInterval(intervalId);
-    $("#time").html("<h4>" + "Time Over, Next question" + "</h4>");
     loadNextQuest();
-
-  } else {
-    loadQuest();
+    
   }
 }
+
+function pushQuest() {
+  questionplace.show();
+  options.show();
+  startFace.hide();
+  startBtn.hide();
+  nextQuest.show();
+  loadQuest();
+}
+
+  
 
 
 // Now I want to bulid my quizs out of the questions array
@@ -74,15 +104,13 @@ function loadQuest () {
     opt2.html(questions[i].option2);
     opt3.html(questions[i].option3);
     opt4.html(questions[i].option4);
-
     correctAns = questions[i].answer;
   
 }
 
 function loadNextQuest () {
 
-  
-  i < totQuest;
+ if(i < totQuest)  {
   i++;
     questionplace.html(questions[i].question);
     console.log(question);
@@ -90,12 +118,23 @@ function loadNextQuest () {
     opt2.html(questions[i].option2);
     opt3.html(questions[i].option3);
     opt4.html(questions[i].option4);
-
     correctAns = questions[i].answer;
+    clearInterval(intervalId);
+    runTime();
 
+ } 
+ if(i === totQuest) {
+   alert("gameover")
+ }
+ 
+ 
 }
 
-$("#next-question").on("click", loadNextQuest);
+startBtn.on("click", runTime);
+startBtn.on("click", pushQuest);
+
+
+nextQuest.on("click", loadNextQuest);
 
 
 

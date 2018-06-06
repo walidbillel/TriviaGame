@@ -1,7 +1,6 @@
 body {
   background-color: #e1e1ee;
-  font-family: sans-serif;
-
+  
 }
 
 .container {
@@ -49,8 +48,8 @@ body {
   cursor: pointer;
   outline: none;
   margin: 10px;
-  position: relative;
-  left: 450px;
+  
+  
   width: 200px;
   
 }
@@ -60,8 +59,8 @@ body {
   height: 100px;
   text-align: center;
   font-size: 75px;
-  width: 700px;
   position: relative;
+  bottom: 250px;
   background-color: red;
   padding: 20px;
   font-family: 'Kirang Haerang', cursive;
@@ -70,15 +69,14 @@ body {
 
 #time {
   position: relative;
-  left: 440px;
+  left: 200px;
   font-family: 'Kirang Haerang', cursive;
   
 }
 
-.jumbotron {
+#start-facade {
   
-  position: relative;
-  left: 100px;
+  padding: 50px;
   font-family: 'Kirang Haerang', cursive;
   background-color: rgb(12, 124, 78);
 

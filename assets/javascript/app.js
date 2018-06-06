@@ -77,13 +77,14 @@ function decrementTime(){
   time.html("<h4>" + "Time Remaining: " + tps + "</h4>");
  
   
-  if (tps == 0) {
+  if (tps === 0) {
     clearInterval(intervalId);
     loadNextQuest();
     
   }
 }
 
+// This will load the question and play with html(changing btns, hiding and showing elemnts)
 function pushQuest() {
   questionplace.show();
   options.show();
@@ -91,12 +92,13 @@ function pushQuest() {
   startBtn.hide();
   nextQuest.show();
   loadQuest();
+  checkAnswer();
 }
 
   
 
 
-// Now I want to bulid my quizs out of the questions array
+// Now I want to bulid my question out of the questions array
 function loadQuest () {
 
     questionplace.html(questions[i].question);
@@ -105,6 +107,7 @@ function loadQuest () {
     opt3.html(questions[i].option3);
     opt4.html(questions[i].option4);
     correctAns = questions[i].answer;
+    // checkAnswer();
   
 }
 
@@ -121,19 +124,33 @@ function loadNextQuest () {
     correctAns = questions[i].answer;
     clearInterval(intervalId);
     runTime();
-
+    // checkAnswer(); will be exc.
  } 
- if(i === totQuest) {
-   alert("gameover")
+ 
+//  I tried else and else if both with playing on opertors but ended up getting the same
+// resut (error then this happens after another click)
+ if (i === totQuest) {
+  //  Game over 
+  nextQuest.html("Try Again");
+  questionplace.hide();
+  options.hide();
+  time.hide();
+  result.show();
+  $("hr").hide();
  }
  
- 
+}
+
+function checkAnswer() {
+
+  // Im stuck with where to begin with....I cant get the radio btns to select only one
+  // then I'm thinking something about grabing the value and comparing it with the object answer
+  // if they match then righttAns++ / dont match wrongAns++
+
 }
 
 startBtn.on("click", runTime);
 startBtn.on("click", pushQuest);
-
-
 nextQuest.on("click", loadNextQuest);
 
 

@@ -107,16 +107,22 @@ function loadQuest () {
     opt3.html(questions[i].option3);
     opt4.html(questions[i].option4);
     correctAns = questions[i].answer;
-    // checkAnswer();
+    checkAnswer();
+    
   
 }
 
 function loadNextQuest () {
 
- if(i < totQuest)  {
+console.log("i = " + i + "  totQuest = " + totQuest)
+ if(i <= totQuest)  {
   i++;
+  // console.log(i);
+  if(i > totQuest) {
+    endGame();
+  } else {
     questionplace.html(questions[i].question);
-    console.log(question);
+    // console.log(questions);
     opt1.html(questions[i].option1);
     opt2.html(questions[i].option2);
     opt3.html(questions[i].option3);
@@ -126,11 +132,18 @@ function loadNextQuest () {
     runTime();
     // checkAnswer(); will be exc.
  } 
+}
  
 //  I tried else and else if both with playing on opertors but ended up getting the same
 // resut (error then this happens after another click)
- if (i === totQuest) {
+ if (i < totQuest) {
   //  Game over 
+    loadNextQuest();
+
+ } 
+ 
+ function endGame() {
+
   nextQuest.html("Try Again");
   questionplace.hide();
   options.hide();
@@ -139,10 +152,11 @@ function loadNextQuest () {
   $("hr").hide();
  }
  
-}
 
+}
 function checkAnswer() {
 
+ 
   // Im stuck with where to begin with....I cant get the radio btns to select only one
   // then I'm thinking something about grabing the value and comparing it with the object answer
   // if they match then righttAns++ / dont match wrongAns++

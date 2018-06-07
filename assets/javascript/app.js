@@ -80,7 +80,6 @@ function decrementTime(){
   if (tps === 0) {
     clearInterval(intervalId);
     loadNextQuest();
-    
   }
 }
 
@@ -92,7 +91,6 @@ function pushQuest() {
   startBtn.hide();
   nextQuest.show();
   loadQuest();
-  checkAnswer();
 }
 
   
@@ -107,65 +105,60 @@ function loadQuest () {
     opt3.html(questions[i].option3);
     opt4.html(questions[i].option4);
     correctAns = questions[i].answer;
-    checkAnswer();
     
   
 }
 
 function loadNextQuest () {
 
-console.log("i = " + i + "  totQuest = " + totQuest)
- if(i <= totQuest)  {
-  i++;
-  // console.log(i);
-  if(i > totQuest) {
-    endGame();
-  } else {
-    questionplace.html(questions[i].question);
-    // console.log(questions);
-    opt1.html(questions[i].option1);
-    opt2.html(questions[i].option2);
-    opt3.html(questions[i].option3);
-    opt4.html(questions[i].option4);
-    correctAns = questions[i].answer;
-    clearInterval(intervalId);
-    runTime();
-    // checkAnswer(); will be exc.
- } 
+  console.log("i = " + i + "  totQuest = " + totQuest)
+   if(i <= totQuest)  {
+    i++;
+   }
+    // console.log(i);
+    if(i >= totQuest) {
+      endGame();
+    } else {
+      questionplace.html(questions[i].question);
+      // console.log(questions);
+      opt1.html(questions[i].option1);
+      opt2.html(questions[i].option2);
+      opt3.html(questions[i].option3);
+      opt4.html(questions[i].option4);
+      correctAns = questions[i].answer;
+      clearInterval(intervalId);
+      runTime();
+      // checkAnswer(); will be exc.
+   } 
 }
- 
-//  I tried else and else if both with playing on opertors but ended up getting the same
-// resut (error then this happens after another click)
- if (i < totQuest) {
-  //  Game over 
-    loadNextQuest();
 
- } 
- 
- function endGame() {
-
-  nextQuest.html("Try Again");
+function endGame() {
+  nextQuest.html("Try Again")
+  time.hide();
   questionplace.hide();
   options.hide();
-  time.hide();
   result.show();
   $("hr").hide();
- }
- 
-
 }
-function checkAnswer() {
 
  
-  // Im stuck with where to begin with....I cant get the radio btns to select only one
-  // then I'm thinking something about grabing the value and comparing it with the object answer
-  // if they match then righttAns++ / dont match wrongAns++
-
+function checkSelectedOpt() {
+  var optionClicked = $(".option");
+  console.log(optionClicked);
+  if (optionClicked == correctAns) {
+    alert("You won!")
+  } else {
+    alert("looser")
+  }
 }
+
+
 
 startBtn.on("click", runTime);
 startBtn.on("click", pushQuest);
 nextQuest.on("click", loadNextQuest);
+$(".option").on("click", checkSelectedOpt);
+
 
 
 

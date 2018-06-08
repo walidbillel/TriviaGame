@@ -33,7 +33,7 @@ var i = 0;
 var rightAns = 0;
 var wrongAns = 0;
 // Set my time to 30sec
-var tps = 30;
+var tps = 15;
 
 // interval 
 var intervalId;
@@ -65,9 +65,9 @@ options.hide();
 
 // function to run the time and decrt. 
 function runTime() {
-  tps = 30;
+  tps = 15;
   time.html("<h4>" + "Time Remaining: " + tps + "</h4>");
-  intervalId = setInterval(decrementTime, 2000);
+  intervalId = setInterval(decrementTime, 1000);
 }
 
 // This function will decrement the time 
@@ -153,11 +153,15 @@ function checkSelectedOpt() {
   console.log(optionClicked);
   if (optionClicked == correctAns) {
     rightAns++;
-    result.text("Right Answers: " + rightAns);
+    var rightDiv = $("<p>")
+    rightDiv.append("Right Answers " + rightAns);
+    result.html(rightDiv);
     loadNextQuest();
   } else if(optionClicked !== correctAns) {
     wrongAns++;
-    result.text("Wrong Answers" + wrongAns);
+    var wrongDiv = $("<p>")
+    wrongDiv.append("Wrong Answers " + wrongAns);
+    result.html(wrongDiv);
     loadNextQuest();
   } else {
     endGame();
@@ -166,10 +170,12 @@ function checkSelectedOpt() {
 
 function reset() {
   i = 0;
+  rightAns = 0;
+  wrongAns = 0;
   pushQuest();
   tryAgain.hide();
   result.hide();
-  time.show();
+  time.show()
 }
 
 

@@ -50,7 +50,9 @@ var opt2 = $("#opt2");
 var opt3 = $("#opt3"); 
 var opt4 = $("#opt4"); 
 var result = $("#result");
+var tryAgain = $("#try-again");
 var correctAns = "";
+var incorrectAns = "";
 
 // Set this to ease the process
 var totQuest = questions.length;
@@ -80,6 +82,10 @@ function decrementTime(){
   if (tps === 0) {
     clearInterval(intervalId);
     loadNextQuest();
+  }
+
+  if (tps === 0 && i >= totQuest) {
+    endGame();
   }
 }
 
@@ -111,7 +117,6 @@ function loadQuest () {
 
 function loadNextQuest () {
 
-  console.log("i = " + i + "  totQuest = " + totQuest)
    if(i <= totQuest)  {
     i++;
    }
@@ -133,23 +138,38 @@ function loadNextQuest () {
 }
 
 function endGame() {
-  nextQuest.html("Try Again")
+  nextQuest.hide();
   time.hide();
   questionplace.hide();
   options.hide();
   result.show();
   $("hr").hide();
+  tryAgain.show();
 }
 
  
 function checkSelectedOpt() {
-  var optionClicked = $(".option");
+  var optionClicked = $(this).attr("id");
   console.log(optionClicked);
   if (optionClicked == correctAns) {
-    alert("You won!")
+    rightAns++;
+    result.text("Right Answers: " + rightAns);
+    loadNextQuest();
+  } else if(optionClicked !== correctAns) {
+    wrongAns++;
+    result.text("Wrong Answers" + wrongAns);
+    loadNextQuest();
   } else {
-    alert("looser")
+    endGame();
   }
+}
+
+function reset() {
+  i = 0;
+  pushQuest();
+  tryAgain.hide();
+  result.hide();
+  time.show();
 }
 
 
@@ -158,6 +178,7 @@ startBtn.on("click", runTime);
 startBtn.on("click", pushQuest);
 nextQuest.on("click", loadNextQuest);
 $(".option").on("click", checkSelectedOpt);
+tryAgain.on("click", reset);
 
 
 

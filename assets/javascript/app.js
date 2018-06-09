@@ -164,7 +164,8 @@ function loadNextQuest () {
 function endGame() {
   nextQuest.hide();
   time.hide();
-  questionplace.hide();
+  clearInterval(intervalId);
+  questionplace.html("Well Played!!! You results are shown beneath. ");
   options.hide();
   result.show();
   $("hr").hide();
@@ -179,9 +180,11 @@ function checkSelectedOpt() {
   console.log(optionClicked);
   if (optionClicked == correctAns) {
     rightAns++; 
+    alert("Bravo, You got it right!!!")
     loadNextQuest();
   } else if(optionClicked !== correctAns) {
     wrongAns++;
+    alert("Wrong one!!!! " + " The Right Answer was Option: " + correctAns );
     loadNextQuest();
     
   } else {
@@ -192,7 +195,8 @@ function checkSelectedOpt() {
 function pushResult() {
   console.log(rightAns);
   console.log(wrongAns);
-  result.html("You Got " + rightAns + " Right answers" + " & " + wrongAns + " Wrong Answers" )
+ 
+   result.html("Right Guesses: " + rightAns + " || " + " Wrong Guesses: "  + wrongAns);
 }
 
 
@@ -200,6 +204,8 @@ function pushResult() {
 // reset the game and start over
 
 function reset() {
+  tps = 15;
+  runTime();
   i = 0;
   rightAns = 0;
   wrongAns = 0;

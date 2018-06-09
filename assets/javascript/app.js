@@ -195,9 +195,7 @@ function pushResult() {
   result.html("You Got " + rightAns + " Right answers" + " & " + wrongAns + " Wrong Answers" )
 }
 
-function showCorrectOne () {
 
-}
 
 // reset the game and start over
 

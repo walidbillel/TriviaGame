@@ -42,7 +42,7 @@ var questions = [{
   option2: "80 HP",
   option3: "130 HP",
   option4: "180 HP",
-  answer: 1
+  answer: 3
 }
 ];
 
@@ -72,7 +72,7 @@ var opt4 = $("#opt4");
 var result = $("#result");
 var tryAgain = $("#try-again");
 var correctAns = "";
-var incorrectAns = "";
+
 
 // Set this to ease the process
 var totQuest = questions.length;
@@ -145,6 +145,7 @@ function loadNextQuest () {
     // console.log(i);
     if(i >= totQuest) {
       endGame();
+      pushResult();
     } else {
       questionplace.html(questions[i].question);
       // console.log(questions);
@@ -177,21 +178,25 @@ function checkSelectedOpt() {
   var optionClicked = $(this).attr("id");
   console.log(optionClicked);
   if (optionClicked == correctAns) {
-    rightAns++;
-    var rightDiv = $("<p>")
-    rightDiv.append("Right Answers " + rightAns);
-    result.html(rightDiv);
+    rightAns++; 
     loadNextQuest();
-    
   } else if(optionClicked !== correctAns) {
     wrongAns++;
-    var wrongDiv = $("<p>")
-    wrongDiv.append("Wrong Answers " + wrongAns);
-    result.html(wrongDiv);
     loadNextQuest();
+    
   } else {
     endGame();
   }
+}
+
+function pushResult() {
+  console.log(rightAns);
+  console.log(wrongAns);
+  result.html("You Got " + rightAns + " Right answers" + " & " + wrongAns + " Wrong Answers" )
+}
+
+function showCorrectOne () {
+
 }
 
 // reset the game and start over
@@ -213,7 +218,6 @@ startBtn.on("click", runTime);
 startBtn.on("click", pushQuest);
 nextQuest.on("click", loadNextQuest);
 $(".option").on("click", checkSelectedOpt);
-
 tryAgain.on("click", reset);
 
 });

@@ -101,6 +101,7 @@ function decrementTime(){
   
   if (tps === 0) {
     clearInterval(intervalId);
+    alert("Time is Over!")
     loadNextQuest();
   }
 

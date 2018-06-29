@@ -101,7 +101,7 @@ function decrementTime(){
   
   if (tps === 0) {
     clearInterval(intervalId);
-    alert("Time is Over!")
+    // alert("Time is Over!")
     loadNextQuest();
   }
 
@@ -132,7 +132,6 @@ function loadQuest () {
     opt3.html(questions[i].option3);
     opt4.html(questions[i].option4);
     correctAns = questions[i].answer;
-    
   
 }
 
@@ -171,6 +170,7 @@ function endGame() {
   result.show();
   $("hr").hide();
   tryAgain.show();
+  
 }
 
  
@@ -181,11 +181,25 @@ function checkSelectedOpt() {
   console.log(optionClicked);
   if (optionClicked == correctAns) {
     rightAns++; 
-    alert("Bravo, You got it right!!!")
+    // alert("Bravo, You got it right!!!")
+    var winText = $("<p>");
+    winText.append("Bravo!!");
+    winText.css("color", "white");
+    winText.css("text-align", "center");
+    winText.css("font-size", "20px");
+    winText.css("padding", "10px");
+    $(".winLoss").html(winText);
     loadNextQuest();
   } else if(optionClicked !== correctAns) {
     wrongAns++;
-    alert("Wrong one!!!! " + " The Right Answer was Option: " + correctAns );
+    var lossText = $("<p>");
+    lossText.append("Wrong one!!!! " + " The Right Answer was Option: " + correctAns);
+    lossText.css("color", "white");
+    lossText.css("text-align", "center");
+    lossText.css("font-size", "20px");
+    lossText.css("padding", "10px");
+    $(".winLoss").html(lossText);
+    // alert("Wrong one!!!! " + " The Right Answer was Option: " + correctAns );
     loadNextQuest();
     
   } else {
@@ -196,6 +210,7 @@ function checkSelectedOpt() {
 function pushResult() {
   console.log(rightAns);
   console.log(wrongAns);
+  $(".winLoss").hide();
  
    result.html("Right Guesses: " + rightAns + " || " + " Wrong Guesses: "  + wrongAns);
 }
@@ -213,7 +228,9 @@ function reset() {
   pushQuest();
   tryAgain.hide();
   result.hide();
-  time.show()
+  time.show();
+  $(".winLoss").empty();
+  $(".winLoss").show();
 }
 
 
